@@ -1,11 +1,3 @@
-local IsNew = false
-
-RegisterNetEvent('qb-interior:client:SetNewState', function(bool)
-	IsNew = bool
-end)
-
--- Functions
-
 function TeleportToInterior(x, y, z, h)
     CreateThread(function()
         SetEntityCoords(PlayerPedId(), x, y, z, 0, 0, 0, false)
@@ -50,12 +42,6 @@ exports('CreateApartmentFurnished', function(spawn)
     FreezeEntityPosition(house, true)
     objects[#objects+1] = house
 	TeleportToInterior(spawn.x + 1.5, spawn.y - 8.0, spawn.z, POIOffsets.exit.h)
-	if IsNew then
-		SetTimeout(750, function()
-			TriggerEvent('qb-clothes:client:CreateFirstCharacter')
-			IsNew = false
-		end)
-	end
     return { objects, POIOffsets }
 end)
 
