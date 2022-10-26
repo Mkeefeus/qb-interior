@@ -21,6 +21,12 @@ exports('DespawnInterior', function(objects, cb)
     end)
 end)
 
+RegisterNetEvent('qb-interior:client:screenfade', function()
+	DoScreenFadeOut(250)
+    while not IsScreenFadedOut() do Wait(50) end
+	DoScreenFadeIn(500)
+end)
+
 -- Starting Apartment
 
 exports('CreateApartmentFurnished', function(spawn)
