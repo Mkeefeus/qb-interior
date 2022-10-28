@@ -128,6 +128,16 @@ end)
 
 -- Shells (in order by tier starting at 1)
 
+exports('CreateShell', function (Source, Model, Coords, Exit, RoutingBucket)
+	Model = (type(Model) == 'number' and Model) or joaat(Model)
+	local house = CreateObject(Model, Coords.x, Coords.y, Coords.z, true, false, false)
+	TriggerClientEvent('qb-interior:client:screenfade', Source)
+    FreezeEntityPosition(house, true)
+	TeleportToInterior(GetPlayerPed(source), vector4(Coords.x + Exit.x, Coords.y + Exit.y, Coords.z + Exit.z, Exit.h))
+	if RoutingBucket then QBCore.Functions.SetEntityBucket(house, RoutingBucket) end
+	return house
+end)
+
 exports('CreateApartmentShell', function(Source, Name, Coords, Routingbucket)
 	local objects = {}
     local POIOffsets = {}
