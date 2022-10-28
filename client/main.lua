@@ -21,6 +21,25 @@ exports('DespawnInterior', function(objects, cb)
     end)
 end)
 
+---@param shell string | number
+---@param spawn vector3
+---@param exit vector4
+exports('SpawnInterior', function (shell, spawn, exit)
+	shell = (type(shell) == 'number' and shell) or joaat(shell)
+	DoScreenFadeOut(500)
+    while not IsScreenFadedOut() do
+        Wait(10)
+    end
+	RequestModel(shell)
+	while not HasModelLoaded(shell) do
+	    Wait(10)
+	end
+	local house = CreateObject(shell, spawn.x, spawn.y, spawn.z, false, false, false)
+    FreezeEntityPosition(house, true)
+	TeleportToInterior(spawn.x + exit.x, spawn.y + exit.y, spawn.z + exit.z, exit.h)
+    return house
+end)
+
 RegisterNetEvent('qb-interior:client:screenfade', function()
 	DoScreenFadeOut(250)
     while not IsScreenFadedOut() do Wait(50) end
