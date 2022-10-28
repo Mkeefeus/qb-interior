@@ -129,7 +129,7 @@ end)
 -- Shells (in order by tier starting at 1)
 
 exports('CreateShell', function (Source, Model, Coords, Exit, RoutingBucket)
-	Model = (type(Model) == 'number' and Model) or joaat(Model)
+	Model = type(Model) == 'number' and Model or joaat(Model)
 	TriggerClientEvent('qb-interior:client:screenfade', Source)
 	local house = CreateObject(Model, Coords.x, Coords.y, Coords.z, true, false, false)
     FreezeEntityPosition(house, true)
