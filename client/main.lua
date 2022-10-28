@@ -21,7 +21,10 @@ exports('DespawnInterior', function(objects, cb)
     end)
 end)
 
-exports('CreateShell', function (shell, spawn, exit)
+---@param shell string | number
+---@param spawn vector3
+---@param exit vector4
+exports('SpawnInterior', function (shell, spawn, exit)
 	shell = (type(shell) == 'number' and shell) or joaat(shell)
 	DoScreenFadeOut(500)
     while not IsScreenFadedOut() do

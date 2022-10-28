@@ -130,10 +130,10 @@ end)
 
 exports('CreateShell', function (Source, Model, Coords, Exit, RoutingBucket)
 	Model = (type(Model) == 'number' and Model) or joaat(Model)
-	local house = CreateObject(Model, Coords.x, Coords.y, Coords.z, true, false, false)
 	TriggerClientEvent('qb-interior:client:screenfade', Source)
+	local house = CreateObject(Model, Coords.x, Coords.y, Coords.z, true, false, false)
     FreezeEntityPosition(house, true)
-	TeleportToInterior(GetPlayerPed(source), vector4(Coords.x + Exit.x, Coords.y + Exit.y, Coords.z + Exit.z, Exit.h))
+	TeleportToInterior(GetPlayerPed(Source), {exit = vector4(Coords.x + Exit.x, Coords.y + Exit.y, Coords.z + Exit.z, Exit.w)})
 	if RoutingBucket then QBCore.Functions.SetEntityBucket(house, RoutingBucket) end
 	return house
 end)
