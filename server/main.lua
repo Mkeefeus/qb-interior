@@ -1,3 +1,4 @@
+local QBCore = exports['qb-core']:GetCoreObject()
 local Apartments = {
 	[`furnitured_midapart`] = {
 		exit = vector4(1.46, -10.33, 1.06, 0.39),
@@ -79,8 +80,8 @@ exports('CreateDefaultApartment', function(Source, ApartmentName, Routingbucket,
 		TriggerClientEvent('qb-interior:client:screenfade', Source)
 		Wait(300)
 		TeleportToInterior(GetPlayerPed(Source), InteractCoords)
-		SetEntityRoutingBucket(Shell, Routingbucket)
-		SetPlayerRoutingBucket(Source, Routingbucket)
+		QBCore.Functions.SetEntityBucket(Shell, Routingbucket)
+		QBCore.Functions.SetPlayerBucket(Source, Routingbucket)
 		return InteractCoords, NetworkGetNetworkIdFromEntity(Shell)
 	elseif type(ApartmentName) == 'string' then
 		local InteractCoords = {
@@ -92,7 +93,7 @@ exports('CreateDefaultApartment', function(Source, ApartmentName, Routingbucket,
 		TriggerClientEvent('qb-interior:client:screenfade', Source)
 		Wait(300)
 		TeleportToInterior(GetPlayerPed(Source), InteractCoords)
-		SetPlayerRoutingBucket(Source, Routingbucket)
+		QBCore.Functions.SetPlayerBucket(Source, Routingbucket)
 		return InteractCoords
 	end
 end)
@@ -110,8 +111,8 @@ exports('CreateDefaultInterior', function(Source, InteriorName, Routingbucket, C
 		TriggerClientEvent('qb-interior:client:screenfade', Source)
 		Wait(300)
 		TeleportToInterior(GetPlayerPed(Source), InteractCoords)
-		SetEntityRoutingBucket(Shell, Routingbucket)
-		SetPlayerRoutingBucket(Source, Routingbucket)
+		QBCore.Functions.SetEntityBucket(Shell, Routingbucket)
+		QBCore.Functions.SetPlayerBucket(Source, Routingbucket)
 		return InteractCoords, NetworkGetNetworkIdFromEntity(Shell)
 	elseif type(InteriorName) == 'string' then
 		local InteractCoords = {
@@ -120,7 +121,7 @@ exports('CreateDefaultInterior', function(Source, InteriorName, Routingbucket, C
 		TriggerClientEvent('qb-interior:client:screenfade', Source)
 		Wait(300)
 		TeleportToInterior(GetPlayerPed(Source), InteractCoords)
-		SetPlayerRoutingBucket(Source, Routingbucket)
+		QBCore.Functions.SetPlayerBucket(Source, Routingbucket)
 		return InteractCoords
 	end
 end)
